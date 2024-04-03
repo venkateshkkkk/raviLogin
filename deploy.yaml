@@ -2,34 +2,34 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: nodejs-app
+  name: ravilogindeploy
   namespace: k8s
   labels:
-    app: nodejs-app
+    app: ravilogin
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nodejs-app
+      app: ravilogin
   template:
     metadata:
       labels:
-        app: nodejs-app
+        app: ravilogin
     spec:
       containers:
-      - name: nodejs-app
-        image: "venkateshkasa996/nodeapp1:latest"
+      - name: ravilogin-c
+        image: "venkateshkasa996/ravilogin:latest"
         ports:
           - containerPort: 3005
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodejs-app
+  name: ravilogin
   namespace: k8s
 spec:
   selector:
-    app: nodejs-app
+    app: ravilogin
   type: LoadBalancer
   ports:
   - name: http
